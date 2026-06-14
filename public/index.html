@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Resizer - Free Online Image Resizer & Compressor</title>
+  <meta name="description" content="Resize images instantly with Image Resizer. Free online tool for social media presets, format conversion, compression, and batch processing. All processing in-browser.">
+  <meta name="keywords" content="image resizer, resize image, image compressor, social media image size, batch image resize, image optimizer, online image editor">
+  <meta name="author" content="Image Resizer">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Image Resizer - Free Online Image Resizer & Compressor">
+  <meta property="og:description" content="Resize images instantly. Free online tool for social media presets, format conversion, and batch processing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image-resizer-962.pages.dev">
+  <meta property="og:image" content="https://image-resizer-962.pages.dev/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Resizer - Free Online Image Resizer & Compressor">
+  <meta name="twitter:description" content="Resize images instantly. Free online tool for social media presets and batch processing.">
+  <link rel="canonical" href="https://image-resizer-962.pages.dev">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8007430228126096" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <h1>ImageResizer</h1>
+      </div>
+      <p class="tagline">Free online image resizer &amp; compressor. Resize, convert, and download in seconds.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="ad-placeholder top-ad">
+      <span>AdSense 728x90 Banner</span>
+    </div>
+
+    <section class="upload-zone" id="dropZone">
+      <div class="upload-content">
+        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17,8 12,3 7,8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <h2>Drag &amp; drop images here</h2>
+        <p>or click to browse files</p>
+        <p class="upload-hint">Supports JPEG, PNG, WebP, GIF, BMP, SVG</p>
+      </div>
+      <input type="file" id="fileInput" multiple accept="image/*" hidden>
+    </section>
+
+    <section class="controls-panel" id="controlsPanel" style="display:none">
+      <div class="controls-grid">
+        <div class="control-group">
+          <label>Resize Mode</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="resizeMode" value="pixels" checked>
+              <span>Pixels</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="resizeMode" value="percentage">
+              <span>Percentage</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="resizeMode" value="preset">
+              <span>Preset</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="control-group" id="pixelInputs">
+          <label>Dimensions</label>
+          <div class="dimension-inputs">
+            <div class="input-group">
+              <label for="widthInput">Width</label>
+              <input type="number" id="widthInput" min="1" max="10000" value="800">
+              <span class="unit">px</span>
+            </div>
+            <button class="aspect-lock active" id="aspectLock" title="Lock aspect ratio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+            </button>
+            <div class="input-group">
+              <label for="heightInput">Height</label>
+              <input type="number" id="heightInput" min="1" max="10000" value="600">
+              <span class="unit">px</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group" id="percentInputs" style="display:none">
+          <label>Scale</label>
+          <div class="percent-input">
+            <input type="range" id="percentSlider" min="1" max="500" value="100">
+            <span id="percentValue">100%</span>
+          </div>
+        </div>
+
+        <div class="control-group" id="presetInputs" style="display:none">
+          <label>Social Media Presets</label>
+          <div class="preset-grid">
+            <button class="preset-btn" data-width="1080" data-height="1080">
+              <span class="preset-name">Instagram</span>
+              <span class="preset-size">1080×1080</span>
+            </button>
+            <button class="preset-btn" data-width="1200" data-height="630">
+              <span class="preset-name">Facebook</span>
+              <span class="preset-size">1200×630</span>
+            </button>
+            <button class="preset-btn" data-width="1200" data-height="675">
+              <span class="preset-name">Twitter</span>
+              <span class="preset-size">1200×675</span>
+            </button>
+            <button class="preset-btn" data-width="1200" data-height="627">
+              <span class="preset-name">LinkedIn</span>
+              <span class="preset-size">1200×627</span>
+            </button>
+            <button class="preset-btn" data-width="1280" data-height="720">
+              <span class="preset-name">YouTube</span>
+              <span class="preset-size">1280×720</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Output Format</label>
+          <select id="formatSelect">
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="webp" selected>WebP</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Quality</label>
+          <div class="quality-input">
+            <input type="range" id="qualitySlider" min="1" max="100" value="80">
+            <span id="qualityValue">80%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="processBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16,3 21,3 21,8"/>
+            <line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21,16 21,21 16,21"/>
+            <line x1="15" y1="15" x2="21" y2="21"/>
+            <line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
+          Resize All
+        </button>
+        <button class="btn btn-secondary" id="downloadAllBtn" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download ZIP
+        </button>
+        <button class="btn btn-outline" id="clearBtn">Clear All</button>
+      </div>
+    </section>
+
+    <section class="image-list" id="imageList"></section>
+
+    <div class="ad-placeholder bottom-ad">
+      <span>AdSense 300x250 Sidebar Ad</span>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ImageResizer &mdash; Free online image resizer tool. All processing happens in your browser. Your images never leave your device.</p>
+      <div class="ad-placeholder footer-ad">
+        <span>AdSense 728x90 Footer Banner</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

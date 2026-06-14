@@ -1,0 +1,12 @@
+{
+  "name": "image-resizer",
+  "version": "1.0.0",
+  "description": "Free online image resizer tool with batch processing",
+  "scripts": {
+    "dev": "npx wrangler pages dev public",
+    "deploy": "npx wrangler pages deploy public --project-name image-resizer"
+  },
+  "keywords": ["image resizer", "image compressor", "batch resize", "cloudflare pages"],
+  "author": "",
+  "license": "MIT"
+}

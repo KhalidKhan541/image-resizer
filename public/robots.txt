@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://image-resizer-962.pages.dev/sitemap.xml
